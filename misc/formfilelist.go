@@ -39,6 +39,7 @@ func ParseInput(s string) ([]string, []string) {
 	return paths, files
 }
 
+/*
 func ListFiles(p string) ([]string, error) {
 
 	fi, err := os.Stat(p)
@@ -48,7 +49,7 @@ func ListFiles(p string) ([]string, error) {
 	if fi.IsDir() {
 
 		li, err := glob(p, ".png")
-		//li, err := filepath.Glob(p + "/*.[jp]*g")
+		li, err := filepath.Glob(p + "/*.[jp]*g")
 		if err != nil {
 			return nil, err
 		}
@@ -60,3 +61,4 @@ func ListFiles(p string) ([]string, error) {
 		fmt.Println("Not a directory")
 	}
 }
+*/
