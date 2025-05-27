@@ -11,11 +11,11 @@ import (
 func deduplicate(paths []string) []string {
 	slices.Sort(paths)
 
-	var new []string
+	var deduplicated []string
 	i, j := 0, 0
 	for i < len(paths) {
 		if i == j {
-			new = append(new, paths[i])
+			deduplicated = append(deduplicated, paths[i])
 		}
 		if strings.Contains(paths[j], paths[i]) {
 			j = j + 1
@@ -26,7 +26,7 @@ func deduplicate(paths []string) []string {
 			break
 		}
 	}
-	return new
+	return deduplicated
 }
 
 func globRec(dir string, ext []string) ([]string, error) {
