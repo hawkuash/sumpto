@@ -8,26 +8,24 @@ import (
 	"strings"
 )
 
-func dedupicateRec(paths []string) []string {
+func deduplicate(paths []string) []string {
 	slices.Sort(paths)
-	paths = slices.Compact(paths)
+	n := len(paths)
 
-	var new []string
-	i, j := 0, 0
-	for i < len(paths) {
+	var deduplicated []string
+	for i, j := 0, 0; i < n && j < n; {
 		if i == j {
-			new = append(new, paths[i])
+			deduplicated = append(deduplicated, paths[i])
 		}
+
 		if strings.Contains(paths[j], paths[i]) {
-			j = j + 1
+			j += 1
 		} else {
 			i = j
 		}
-		if j >= len(paths) {
-			break
-		}
 	}
-	return new
+
+	return deduplicated
 }
 
 func globRec(dir string, ext []string) ([]string, error) {
@@ -81,7 +79,7 @@ func FormFileList(in string, rec bool, ext []string) []string {
 	var files, paths []string
 	paths, files = ParseInput(in)
 	if rec {
-		paths = dedupicateRec(paths)
+		paths = deduplicate(paths)
 		for _, path := range paths {
 			found, err := globRec(path, ext)
 			if err == nil {
