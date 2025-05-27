@@ -8,7 +8,7 @@ import (
 	"strings"
 )
 
-func dedupicateRec(paths []string) []string {
+func deduplicate(paths []string) []string {
 	slices.Sort(paths)
 	paths = slices.Compact(paths)
 
@@ -81,7 +81,7 @@ func FormFileList(in string, rec bool, ext []string) []string {
 	var files, paths []string
 	paths, files = ParseInput(in)
 	if rec {
-		paths = dedupicateRec(paths)
+		paths = deduplicate(paths)
 		for _, path := range paths {
 			found, err := globRec(path, ext)
 			if err == nil {
