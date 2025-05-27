@@ -10,7 +10,6 @@ import (
 
 func deduplicate(paths []string) []string {
 	slices.Sort(paths)
-	paths = slices.Compact(paths)
 
 	var new []string
 	i, j := 0, 0
