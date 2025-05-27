@@ -10,9 +10,10 @@ import (
 
 func deduplicate(paths []string) []string {
 	slices.Sort(paths)
+	n := len(paths)
 
 	var deduplicated []string
-	for i, j := 0, 0; i < len(paths) && j < len(paths); {
+	for i, j := 0, 0; i < n && j < n; {
 		if i == j {
 			deduplicated = append(deduplicated, paths[i])
 		}
