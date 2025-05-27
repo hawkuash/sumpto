@@ -17,12 +17,14 @@ func deduplicate(paths []string) []string {
 		if i == j {
 			deduplicated = append(deduplicated, paths[i])
 		}
+
 		if strings.Contains(paths[j], paths[i]) {
-			j = j + 1
+			j += 1
 		} else {
 			i = j
 		}
 	}
+
 	return deduplicated
 }
 
