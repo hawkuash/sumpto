@@ -12,8 +12,7 @@ func deduplicate(paths []string) []string {
 	slices.Sort(paths)
 
 	var deduplicated []string
-	i, j := 0, 0
-	for i < len(paths) {
+	for i, j := 0, 0; i < len(paths) && j < len(paths); {
 		if i == j {
 			deduplicated = append(deduplicated, paths[i])
 		}
@@ -21,9 +20,6 @@ func deduplicate(paths []string) []string {
 			j = j + 1
 		} else {
 			i = j
-		}
-		if j >= len(paths) {
-			break
 		}
 	}
 	return deduplicated
