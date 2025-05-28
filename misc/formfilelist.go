@@ -19,12 +19,9 @@ func dedupicateRec(paths []string) []string {
 			new = append(new, paths[i])
 		}
 		if strings.Contains(paths[j], paths[i]) {
-			j = j + 1
+			j += 1
 		} else {
 			i = j
-		}
-		if j >= len(paths) {
-			break
 		}
 	}
 	return new
