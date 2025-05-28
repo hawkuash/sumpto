@@ -1,4 +1,4 @@
-module github.com/Hawkuash/sumpto
+module github.com/hawkuash/sumpto
 
 go 1.24.2
 

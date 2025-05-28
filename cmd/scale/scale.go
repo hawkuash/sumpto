@@ -3,7 +3,7 @@ package scale
 import (
 	"fmt"
 
-	"github.com/Hawkuash/sumpto/cmd"
+	"github.com/hawkuash/sumpto/cmd"
 	"github.com/spf13/cobra"
 )
 
