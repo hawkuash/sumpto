@@ -19,6 +19,11 @@ func CheckError(err error, stop bool) bool {
 	return false
 }
 
+func NewFilename(filename string, suffix string) string {
+	ext := filepath.Ext(filename)
+	return fmt.Sprintf("%s-%s%s", strings.TrimSuffix(filename, ext), suffix, ext)
+}
+
 func deduplicate(paths []string) []string {
 	slices.Sort(paths)
 	n := len(paths)
