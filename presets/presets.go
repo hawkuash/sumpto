@@ -20,3 +20,12 @@ func PngExportParams() *vips.PngExportParams {
 		StripMetadata: true,
 	}
 }
+
+func PngExportParamsSafe() *vips.ExportParams {
+	return &vips.ExportParams{
+		Format:        vips.ImageTypePNG,
+		Compression:   6,
+		Interlaced:    false,
+		StripMetadata: true,
+	}
+}
