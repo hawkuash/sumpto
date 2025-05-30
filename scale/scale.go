@@ -16,13 +16,13 @@ func ScaleImage(path string, ep *vips.ExportParams, overwrite bool) {
 	}
 	switch imgtype := image.Format(); imgtype {
 	case vips.ImageTypeJPEG:
-		bytes, _, _ := image.ExportJpeg(presets.JpegExportParams(100))
+		bytes, _, _ := image.ExportJpeg(presets.JPEG(100))
 		if !overwrite {
 			path = files.NewFilename(path, "downscaled")
 		}
 		err = os.WriteFile(path, bytes, 0644)
 	case vips.ImageTypePNG:
-		newImage, _ := image.ToImage(presets.PngExportParamsSafe())
+		newImage, _ := image.ToImage(presets.SafePNG())
 		if !overwrite {
 			path = files.NewFilename(path, "downscaled")
 		}
