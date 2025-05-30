@@ -2,7 +2,7 @@ package presets
 
 import "github.com/davidbyttow/govips/v2/vips"
 
-func JpegExportParams(q int) *vips.JpegExportParams {
+func JPEG(q int) *vips.JpegExportParams {
 	return &vips.JpegExportParams{
 		Quality:       q,
 		SubsampleMode: vips.VipsForeignSubsampleOn,
@@ -11,7 +11,7 @@ func JpegExportParams(q int) *vips.JpegExportParams {
 	}
 }
 
-func PngExportParams() *vips.PngExportParams {
+func PNG() *vips.PngExportParams {
 	return &vips.PngExportParams{
 		Quality:       100,
 		Compression:   6,
@@ -21,7 +21,7 @@ func PngExportParams() *vips.PngExportParams {
 	}
 }
 
-func PngExportParamsSafe() *vips.ExportParams {
+func SafePNG() *vips.ExportParams {
 	return &vips.ExportParams{
 		Format:        vips.ImageTypePNG,
 		Compression:   6,
