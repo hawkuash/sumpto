@@ -90,18 +90,18 @@ func ParseInput(s string) ([]string, []string) {
 }
 
 func GenerateFiles(in string, rec bool, ext []string) []string {
-	var files, paths []string
-	paths, files = ParseInput(in)
+	paths, files := ParseInput(in)
 	if rec {
 		paths = deduplicate(paths)
 	}
+
 	for _, path := range paths {
 		found, err := glob(path, ext, rec)
 		if !CheckError(err, false) {
 			files = append(files, found...)
 		}
 	}
+
 	slices.Sort(files)
-	files = slices.Compact(files)
-	return files
+	return slices.Compact(files)
 }
