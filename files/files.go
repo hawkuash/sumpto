@@ -2,22 +2,12 @@ package files
 
 import (
 	"fmt"
+	"log"
 	"os"
 	"path/filepath"
 	"slices"
 	"strings"
 )
-
-func CheckError(err error, stop bool) bool {
-	if err != nil {
-		fmt.Println("error:", err)
-		if stop {
-			os.Exit(1)
-		}
-		return true
-	}
-	return false
-}
 
 func NewFilename(filename string, suffix string) string {
 	ext := filepath.Ext(filename)
@@ -97,9 +87,12 @@ func GenerateFiles(in string, rec bool, ext []string) []string {
 
 	for _, path := range paths {
 		found, err := glob(path, ext, rec)
-		if !CheckError(err, false) {
-			files = append(files, found...)
+		if err != nil {
+			log.Printf("An error occured while searching for files at %s: %s \n", path, err)
+			continue
 		}
+		files = append(files, found...)
+
 	}
 
 	slices.Sort(files)
