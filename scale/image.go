@@ -10,6 +10,24 @@ import (
 	"github.com/hawkuash/sumpto/presets"
 )
 
+type Search_options struct {
+	All, Jpeg, Png bool
+}
+
+func SetScaleExtensions(so Search_options) (extensions []string) {
+	if so.All {
+		extensions = append(extensions, ".jpg", ".jpeg", ".png")
+		return
+	}
+	if so.Jpeg {
+		extensions = append(extensions, ".jpg", ".jpeg")
+	}
+	if so.Png {
+		extensions = append(extensions, ".png")
+	}
+	return
+}
+
 func ScaleImage(path string, overwrite bool) {
 	image, err := vips.NewImageFromFile(path)
 	if err != nil {
