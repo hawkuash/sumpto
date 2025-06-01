@@ -3,12 +3,11 @@ package convert
 import (
 	"fmt"
 
-	"github.com/hawkuash/sumpto/cmd"
 	"github.com/spf13/cobra"
 )
 
 // convertCmd represents the convert command
-var convertCmd = &cobra.Command{
+var ConvertCmd = &cobra.Command{
 	Use:   "convert",
 	Short: "A brief description of your command",
 	Long: `A longer description that spans multiple lines and likely contains examples
@@ -23,8 +22,6 @@ to quickly create a Cobra application.`,
 }
 
 func init() {
-	cmd.RootCmd.AddCommand(convertCmd)
-
 	// Here you will define your flags and configuration settings.
 
 	// Cobra supports Persistent Flags which will work for this command
