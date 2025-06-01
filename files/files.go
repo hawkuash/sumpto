@@ -9,6 +9,11 @@ import (
 	"strings"
 )
 
+var (
+	Paths     string
+	Recursive bool
+)
+
 func NewFilename(filename string, suffix string) string {
 	ext := filepath.Ext(filename)
 	return fmt.Sprintf("%s-%s%s", strings.TrimSuffix(filename, ext), suffix, ext)
