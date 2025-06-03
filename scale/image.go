@@ -3,6 +3,7 @@ package scale
 import (
 	"log"
 	"os"
+	"slices"
 
 	"github.com/anthonynsimon/bild/imgio"
 	"github.com/davidbyttow/govips/v2/vips"
@@ -10,19 +11,18 @@ import (
 	"github.com/hawkuash/sumpto/presets"
 )
 
-type Search_options struct {
-	All, Jpeg, Png bool
-}
+var (
+	supported_formats = []string{".jpg", ".jpeg", ".png"}
+)
 
-func SetScaleExtensions(so Search_options) (extensions []string) {
-	if so.All {
-		extensions = append(extensions, ".jpg", ".jpeg", ".png")
-		return
+func SetScaleExtensions(format_list []string) (extensions []string) {
+	if format_list == nil {
+		return supported_formats
 	}
-	if so.Jpeg {
+	if slices.Contains(format_list, "jpeg") || slices.Contains(format_list, "jpg") {
 		extensions = append(extensions, ".jpg", ".jpeg")
 	}
-	if so.Png {
+	if slices.Contains(format_list, "png") {
 		extensions = append(extensions, ".png")
 	}
 	return
