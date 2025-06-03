@@ -10,9 +10,15 @@ import (
 )
 
 var (
-	Paths     string
+	Input     string
 	Recursive bool
 )
+
+func LowerSlice(ss []string) {
+	for i := range ss {
+		ss[i] = strings.ToLower(ss[i])
+	}
+}
 
 func NewFilename(filename string, suffix string) string {
 	ext := filepath.Ext(filename)
