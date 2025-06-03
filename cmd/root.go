@@ -28,8 +28,8 @@ func Execute() {
 }
 
 func init() {
-	RootCmd.PersistentFlags().StringVarP(&files.Paths, "paths", "p", "", "paths to files meant for processing")
-	RootCmd.MarkPersistentFlagRequired("paths")
+	RootCmd.PersistentFlags().StringVarP(&files.Input, "input", "i", "", "paths to files meant for processing")
+	RootCmd.MarkPersistentFlagRequired("input")
 
 	RootCmd.PersistentFlags().BoolVarP(&files.Recursive, "recursive", "r", true, "recursive flag indicates if search in subdirectories must be done")
 	RootCmd.AddCommand(scale.ScaleCmd)
