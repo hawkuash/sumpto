@@ -16,6 +16,7 @@ var (
 )
 
 func SetScaleExtensions(format_list []string) (extensions []string) {
+	files.LowerSlice(format_list)
 	if format_list == nil {
 		return supported_formats
 	}
