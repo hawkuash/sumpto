@@ -28,10 +28,14 @@ func SetScaleExtensions(format_list []string) (extensions []string) {
 	return
 }
 
-func ScaleImage(path string, overwrite bool) {
+func ScaleImage(path string, overwrite bool, limit int) {
 	image, err := vips.NewImageFromFile(path)
 	if err != nil {
 		log.Printf("An error occured during opening file at %s: %s \n", path, err)
+		return
+	}
+	if min(image.Height(), image.Width()) < limit {
+		log.Printf("Image dimensions exceeded size limit: %s", path)
 		return
 	}
 	image.Resize(0.5, vips.KernelAuto)
