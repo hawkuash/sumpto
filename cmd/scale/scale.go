@@ -1,8 +1,7 @@
 package scale
 
 import (
-	"fmt"
-
+	"github.com/davidbyttow/govips/v2/vips"
 	"github.com/hawkuash/sumpto/files"
 	"github.com/hawkuash/sumpto/scale"
 	"github.com/spf13/cobra"
@@ -19,6 +18,8 @@ var ScaleCmd = &cobra.Command{
 	Short: " ",
 	Long:  `scale command`,
 	Run: func(scmd *cobra.Command, args []string) {
+		vips.Startup(nil)
+		defer vips.Shutdown()
 		for _, file := range files.GenerateFiles(files.Input, files.Recursive, scale.SetScaleExtensions(format_list)) {
 			fmt.Println(file)
 		}
