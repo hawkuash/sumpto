@@ -10,8 +10,9 @@ import (
 )
 
 var (
-	Input     string
-	Recursive bool
+	Input       string
+	Recursive   bool
+	Format_list []string
 )
 
 func LowerSlice(ss []string) {
