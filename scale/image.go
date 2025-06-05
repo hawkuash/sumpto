@@ -44,7 +44,7 @@ func ScaleImage(path string, overwrite bool, limit int) {
 	case vips.ImageTypeJPEG:
 		bytes, _, _ := image.ExportJpeg(presets.JPEG(100))
 		if !overwrite {
-			path = files.NewFilename(path, "downscaled")
+			path = files.UpdateFilename(path, "downscaled")
 		}
 		err = os.WriteFile(path, bytes, 0644)
 		if err != nil {
@@ -54,7 +54,7 @@ func ScaleImage(path string, overwrite bool, limit int) {
 	case vips.ImageTypePNG:
 		newImage, _ := image.ToImage(presets.SafePNG())
 		if !overwrite {
-			path = files.NewFilename(path, "downscaled")
+			path = files.UpdateFilename(path, "downscaled")
 		}
 		err = imgio.Save(path, newImage, imgio.PNGEncoder())
 		if err != nil {

@@ -21,7 +21,7 @@ func LowerSlice(ss []string) {
 	}
 }
 
-func NewFilename(filename string, suffix string) string {
+func UpdateFilename(filename string, suffix string) string {
 	ext := filepath.Ext(filename)
 	return fmt.Sprintf("%s-%s%s", strings.TrimSuffix(filename, ext), suffix, ext)
 }
