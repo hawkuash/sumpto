@@ -7,6 +7,8 @@ import (
 	"path/filepath"
 	"slices"
 	"strings"
+
+	"github.com/davidbyttow/govips/v2/vips"
 )
 
 var (
@@ -28,6 +30,12 @@ func UpdateFilename(filename string, suffix string) string {
 
 func UpdateExtension(filename string, ext string) string {
 	return fmt.Sprintf("%s%s", strings.TrimSuffix(filename, filepath.Ext(filename)), ext)
+}
+
+func RemoveBloat(image *vips.ImageRef) {
+	image.RemoveICCProfile()
+	image.RemoveMetadata()
+	image.RemoveOrientation()
 }
 
 func deduplicate(paths []string) []string {

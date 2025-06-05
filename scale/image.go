@@ -40,6 +40,7 @@ func ScaleImage(path string, overwrite bool, limit int) {
 		return
 	}
 	image.Resize(0.5, vips.KernelAuto)
+	files.RemoveBloat(image)
 	switch imgtype := image.Format(); imgtype {
 	case vips.ImageTypeJPEG:
 		bytes, _, _ := image.ExportJpeg(presets.JPEG(100))

@@ -44,6 +44,7 @@ func ConvertToPNG(path string) {
 		log.Printf("An error occured during opening file at %s: %s \n", path, err)
 		return
 	}
+	files.RemoveBloat(image)
 	newImage, _ := image.ToImage(presets.SafePNG())
 	path = files.UpdateExtension(path, ".png")
 	err = imgio.Save(path, newImage, imgio.PNGEncoder())
@@ -59,9 +60,7 @@ func ConvertToJPEG(path string) {
 		log.Printf("An error occured during opening file at %s: %s \n", path, err)
 		return
 	}
-	image.RemoveICCProfile()
-	image.RemoveMetadata()
-	image.RemoveOrientation()
+	files.RemoveBloat(image)
 	bytes, _, _ := image.ExportJpeg(presets.JPEG(100))
 	path = files.UpdateExtension(path, ".jpg")
 	err = os.WriteFile(path, bytes, 0644)
