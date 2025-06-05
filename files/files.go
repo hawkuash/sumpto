@@ -26,6 +26,10 @@ func UpdateFilename(filename string, suffix string) string {
 	return fmt.Sprintf("%s-%s%s", strings.TrimSuffix(filename, ext), suffix, ext)
 }
 
+func UpdateExtension(filename string, ext string) string {
+	return fmt.Sprintf("%s%s", strings.TrimSuffix(filename, filepath.Ext(filename)), ext)
+}
+
 func deduplicate(paths []string) []string {
 	slices.Sort(paths)
 	n := len(paths)

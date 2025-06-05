@@ -45,6 +45,7 @@ func ConvertToPNG(path string) {
 		return
 	}
 	newImage, _ := image.ToImage(presets.SafePNG())
+	path = files.UpdateExtension(path, ".png")
 	err = imgio.Save(path, newImage, imgio.PNGEncoder())
 	if err != nil {
 		log.Printf("An error occured during saving file at %s: %s \n", path, err)
@@ -58,7 +59,11 @@ func ConvertToJPEG(path string) {
 		log.Printf("An error occured during opening file at %s: %s \n", path, err)
 		return
 	}
+	image.RemoveICCProfile()
+	image.RemoveMetadata()
+	image.RemoveOrientation()
 	bytes, _, _ := image.ExportJpeg(presets.JPEG(100))
+	path = files.UpdateExtension(path, ".jpg")
 	err = os.WriteFile(path, bytes, 0644)
 	if err != nil {
 		log.Printf("An error occured during saving file at %s: %s \n", path, err)
