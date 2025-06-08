@@ -15,8 +15,8 @@ var (
 // ScaleCmd represents the scale command
 var ScaleCmd = &cobra.Command{
 	Use:   "scale",
-	Short: " ",
-	Long:  `scale command`,
+	Short: "Resizes files with 0.5 scale",
+	Long:  `Resizes files with 0.5 scale `,
 	Run: func(scmd *cobra.Command, args []string) {
 		vips.Startup(nil)
 		defer vips.Shutdown()
