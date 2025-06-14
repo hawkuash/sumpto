@@ -61,7 +61,7 @@ func ConvertToJPEG(path string) {
 		return
 	}
 	files.RemoveBloat(image)
-	bytes, _, _ := image.ExportJpeg(presets.JPEG(100))
+	bytes, _, _ := image.ExportJpeg(presets.JPEG(files.Quality))
 	path = files.UpdateExtension(path, ".jpg")
 	err = os.WriteFile(path, bytes, 0644)
 	if err != nil {

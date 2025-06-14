@@ -15,6 +15,7 @@ var (
 	Input       string
 	Recursive   bool
 	Format_list []string
+	Quality     int
 )
 
 func LowerSlice(ss []string) {

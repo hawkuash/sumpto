@@ -33,6 +33,8 @@ func init() {
 
 	RootCmd.PersistentFlags().StringSliceVarP(&files.Format_list, "format", "f", nil, "filters search results by presented file formats")
 
+	RootCmd.PersistentFlags().IntVarP(&files.Quality, "quality", "q", 100, "quality param for supported formats")
+
 	RootCmd.PersistentFlags().BoolVarP(&files.Recursive, "recursive", "r", true, "recursive flag indicates if search in subdirectories must be done")
 	RootCmd.AddCommand(scale.ScaleCmd)
 	RootCmd.AddCommand(convert.ConvertCmd)

@@ -43,7 +43,7 @@ func ScaleImage(path string, overwrite bool, limit int) {
 	files.RemoveBloat(image)
 	switch imgtype := image.Format(); imgtype {
 	case vips.ImageTypeJPEG:
-		bytes, _, _ := image.ExportJpeg(presets.JPEG(100))
+		bytes, _, _ := image.ExportJpeg(presets.JPEG(files.Quality))
 		if !overwrite {
 			path = files.UpdateFilename(path, "downscaled")
 		}
