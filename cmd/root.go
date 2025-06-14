@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/hawkuash/sumpto/cmd/compress"
 	"github.com/hawkuash/sumpto/cmd/convert"
 	"github.com/hawkuash/sumpto/cmd/scale"
 	"github.com/hawkuash/sumpto/files"
@@ -36,6 +37,8 @@ func init() {
 	RootCmd.PersistentFlags().IntVarP(&files.Quality, "quality", "q", 100, "quality param for supported formats")
 
 	RootCmd.PersistentFlags().BoolVarP(&files.Recursive, "recursive", "r", true, "recursive flag indicates if search in subdirectories must be done")
+
 	RootCmd.AddCommand(scale.ScaleCmd)
 	RootCmd.AddCommand(convert.ConvertCmd)
+	RootCmd.AddCommand(compress.CompressCmd)
 }
