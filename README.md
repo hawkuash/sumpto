@@ -13,9 +13,8 @@ On Windows also add next environmental variables:
 - path: *path_to_libvips*\bin 
 - PKG_CONFIG_PATH: *path_to_libvips*\lib\pkgconfig
 
-2. If you got executable, do the usual stuff. Else, while in root directory of cloned repo, run
+2. If you got executable, do the usual stuff. Else, while in root directory of cloned repo, read [this](https://go.dev/doc/tutorial/compile-install) and run
 ```Go
-go build
 go install
 ```
 3. Run it
