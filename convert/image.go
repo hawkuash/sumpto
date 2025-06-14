@@ -12,14 +12,14 @@ import (
 )
 
 var (
-	Supported_formats_jpeg = []string{".png"}
-	Supported_formats_png  = []string{".jpeg", ".jpg"}
+	supported_formats_jpeg = []string{".png"}
+	supported_formats_png  = []string{".jpeg", ".jpg"}
 )
 
 func SetPNGConvertExtensions(format_list []string) (extensions []string) {
 	files.LowerSlice(format_list)
 	if format_list == nil {
-		return Supported_formats_png
+		return supported_formats_png
 	}
 	if slices.Contains(format_list, "jpeg") || slices.Contains(format_list, "jpg") {
 		extensions = append(extensions, ".jpg", ".jpeg")
@@ -30,7 +30,7 @@ func SetPNGConvertExtensions(format_list []string) (extensions []string) {
 func SetJPEGConvertExtensions(format_list []string) (extensions []string) {
 	files.LowerSlice(format_list)
 	if format_list == nil {
-		return Supported_formats_jpeg
+		return supported_formats_jpeg
 	}
 	if slices.Contains(format_list, "png") {
 		extensions = append(extensions, ".png")
