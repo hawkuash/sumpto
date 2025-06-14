@@ -15,7 +15,7 @@ var TopngCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		vips.Startup(nil)
 		defer vips.Shutdown()
-		for _, file := range files.GenerateFiles(files.Input, files.Recursive, convert.Supported_formats_png) {
+		for _, file := range files.GenerateFiles(files.Input, files.Recursive, convert.SetPNGConvertExtensions(files.Format_list)) {
 			convert.ConvertToPNG(file)
 		}
 	},

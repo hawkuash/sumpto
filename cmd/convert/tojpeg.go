@@ -15,7 +15,7 @@ var TojpegCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		vips.Startup(nil)
 		defer vips.Shutdown()
-		for _, file := range files.GenerateFiles(files.Input, files.Recursive, convert.Supported_formats_jpeg) {
+		for _, file := range files.GenerateFiles(files.Input, files.Recursive, convert.SetJPEGConvertExtensions(files.Format_list)) {
 			convert.ConvertToJPEG(file)
 		}
 	},
