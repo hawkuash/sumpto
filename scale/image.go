@@ -62,5 +62,7 @@ func ScaleImage(path string, overwrite bool, limit int) {
 			log.Printf("An error occured during saving file at %s: %s \n", path, err)
 			return
 		}
+	default:
+		log.Printf("Passed unsupported filetype at: %s", path)
 	}
 }
