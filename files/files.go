@@ -12,10 +12,10 @@ import (
 )
 
 var (
-	Input       string
-	Recursive   bool
-	Format_list []string
-	Quality     int
+	Input      string
+	Recursive  bool
+	FormatList []string
+	Quality    int
 )
 
 func LowerSlice(ss []string) {
@@ -26,11 +26,20 @@ func LowerSlice(ss []string) {
 
 func UpdateFilename(filename string, suffix string) string {
 	ext := filepath.Ext(filename)
-	return fmt.Sprintf("%s-%s%s", strings.TrimSuffix(filename, ext), suffix, ext)
+	return fmt.Sprintf(
+		"%s-%s%s",
+		strings.TrimSuffix(filename, ext),
+		suffix,
+		ext,
+	)
 }
 
 func UpdateExtension(filename string, ext string) string {
-	return fmt.Sprintf("%s%s", strings.TrimSuffix(filename, filepath.Ext(filename)), ext)
+	return fmt.Sprintf(
+		"%s%s",
+		strings.TrimSuffix(filename, filepath.Ext(filename)),
+		ext,
+	)
 }
 
 func RemoveBloat(image *vips.ImageRef) {
@@ -64,29 +73,37 @@ func glob(dir string, ext []string, rec bool) ([]string, error) {
 		files []string
 		err   error
 	)
+
 	if rec {
-		err = filepath.Walk(dir, func(path string, f os.FileInfo, err error) error {
-			if slices.Contains(ext, filepath.Ext(path)) {
-				files = append(files, path)
-			}
-			return nil
-		})
+		err = filepath.Walk(
+			dir,
+			func(path string, f os.FileInfo, err error) error {
+				if slices.Contains(ext, filepath.Ext(path)) {
+					files = append(files, path)
+				}
+
+				return nil
+			},
+		)
 	} else {
 		paths, err := filepath.Glob(dir + "/*.*")
 		if err != nil {
 			return nil, err
 		}
+
 		for _, path := range paths {
 			if slices.Contains(ext, filepath.Ext(path)) {
 				files = append(files, path)
 			}
 		}
 	}
+
 	return files, err
 }
 
 func ParseInput(s string) ([]string, []string) {
 	var files, paths []string
+
 	l := filepath.SplitList(s)
 	for _, val := range l {
 		fi, err := os.Stat(val)
@@ -94,13 +111,16 @@ func ParseInput(s string) ([]string, []string) {
 			fmt.Println(err)
 			continue
 		}
+
 		if fi.IsDir() && !slices.Contains(paths, val) {
 			paths = append(paths, val)
 		}
+
 		if !fi.IsDir() && !slices.Contains(files, val) {
 			files = append(files, val)
 		}
 	}
+
 	return paths, files
 }
 
@@ -113,11 +133,16 @@ func GenerateFiles(in string, rec bool, ext []string) []string {
 	for _, path := range paths {
 		found, err := glob(path, ext, rec)
 		if err != nil {
-			log.Printf("An error occured while searching for files at %s: %s \n", path, err)
+			log.Printf(
+				"An error occured while searching for files at %s: %s \n",
+				path,
+				err,
+			)
+
 			continue
 		}
-		files = append(files, found...)
 
+		files = append(files, found...)
 	}
 
 	slices.Sort(files)
