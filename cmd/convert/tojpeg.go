@@ -7,15 +7,15 @@ import (
 	"github.com/spf13/cobra"
 )
 
-// tojpegCmd represents the tojpeg command
-var TojpegCmd = &cobra.Command{
+// ToJPEGCmd represents the tojpeg command
+var ToJPEGCmd = &cobra.Command{
 	Use:   "to-jpeg",
 	Short: "Converts supported formats to JPEG",
 	Long:  `Converts supported formats to JPEG`,
 	Run: func(cmd *cobra.Command, args []string) {
 		vips.Startup(nil)
 		defer vips.Shutdown()
-		for _, file := range files.GenerateFiles(files.Input, files.Recursive, convert.SetJPEGConvertExtensions(files.Format_list)) {
+		for _, file := range files.GenerateFiles(files.Input, files.Recursive, convert.SetJPEGConvertExtensions(files.FormatList)) {
 			convert.ConvertToJPEG(file)
 		}
 	},

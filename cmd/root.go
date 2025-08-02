@@ -11,7 +11,7 @@ import (
 	"github.com/spf13/cobra"
 )
 
-// rootCmd represents the base command when called without any subcommands
+// RootCmd represents the base command when called without any subcommands
 var RootCmd = &cobra.Command{
 	Use:   "sumpto",
 	Short: "Sumpto is an app to mess up ur media collection",
@@ -29,14 +29,18 @@ func Execute() {
 }
 
 func init() {
-	RootCmd.PersistentFlags().StringVarP(&files.Input, "input", "i", "", "paths to files meant for processing")
+	RootCmd.PersistentFlags().
+		StringVarP(&files.Input, "input", "i", "", "paths to files meant for processing")
 	RootCmd.MarkPersistentFlagRequired("input")
 
-	RootCmd.PersistentFlags().StringSliceVarP(&files.Format_list, "format", "f", nil, "filters search results by presented file formats")
+	RootCmd.PersistentFlags().
+		StringSliceVarP(&files.FormatList, "format", "f", nil, "filters search results by presented file formats")
 
-	RootCmd.PersistentFlags().IntVarP(&files.Quality, "quality", "q", 100, "quality param for supported formats")
+	RootCmd.PersistentFlags().
+		IntVarP(&files.Quality, "quality", "q", 100, "quality param for supported formats")
 
-	RootCmd.PersistentFlags().BoolVarP(&files.Recursive, "recursive", "r", true, "recursive flag indicates if search in subdirectories must be done")
+	RootCmd.PersistentFlags().
+		BoolVarP(&files.Recursive, "recursive", "r", true, "recursive flag indicates if search in subdirectories must be done")
 
 	RootCmd.AddCommand(scale.ScaleCmd)
 	RootCmd.AddCommand(convert.ConvertCmd)
