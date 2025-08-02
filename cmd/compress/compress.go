@@ -18,12 +18,13 @@ var CompressCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		vips.Startup(nil)
 		defer vips.Shutdown()
-		for _, file := range files.GenerateFiles(files.Input, files.Recursive, compress.SetCompressExtensions(files.Format_list)) {
+		for _, file := range files.GenerateFiles(files.Input, files.Recursive, compress.SetCompressExtensions(files.FormatList)) {
 			compress.CompressImage(file, overwrite)
 		}
 	},
 }
 
 func init() {
-	CompressCmd.Flags().BoolVarP(&overwrite, "overwrite", "o", false, "declares if file should be overwritten")
+	CompressCmd.Flags().
+		BoolVarP(&overwrite, "overwrite", "o", false, "declares if file should be overwritten")
 }

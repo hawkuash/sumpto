@@ -20,13 +20,15 @@ var ScaleCmd = &cobra.Command{
 	Run: func(scmd *cobra.Command, args []string) {
 		vips.Startup(nil)
 		defer vips.Shutdown()
-		for _, file := range files.GenerateFiles(files.Input, files.Recursive, scale.SetScaleExtensions(files.Format_list)) {
+		for _, file := range files.GenerateFiles(files.Input, files.Recursive, scale.SetScaleExtensions(files.FormatList)) {
 			scale.ScaleImage(file, overwrite, limit)
 		}
 	},
 }
 
 func init() {
-	ScaleCmd.Flags().BoolVarP(&overwrite, "overwrite", "o", false, "declares if file should be overwritten")
-	ScaleCmd.Flags().IntVarP(&limit, "dimension-limit", "l", 2160, "lower limit of image dimensions for downscaling and upper - for upscaling, but no upscaling for now")
+	ScaleCmd.Flags().
+		BoolVarP(&overwrite, "overwrite", "o", false, "declares if file should be overwritten")
+	ScaleCmd.Flags().
+		IntVarP(&limit, "dimension-limit", "l", 2160, "lower limit of image dimensions for downscaling and upper - for upscaling, but no upscaling for now")
 }

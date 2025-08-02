@@ -12,44 +12,63 @@ import (
 )
 
 var (
-	supported_formats_jpeg = []string{".png"}
-	supported_formats_png  = []string{".jpeg", ".jpg"}
+	supportedFormatsJPEG = []string{".png"}
+	supportedFormatsPNG  = []string{".jpeg", ".jpg"}
 )
 
-func SetPNGConvertExtensions(format_list []string) (extensions []string) {
-	files.LowerSlice(format_list)
-	if format_list == nil {
-		return supported_formats_png
+func SetPNGConvertExtensions(formatList []string) (extensions []string) {
+	files.LowerSlice(formatList)
+
+	if formatList == nil {
+		return supportedFormatsPNG
 	}
-	if slices.Contains(format_list, "jpeg") || slices.Contains(format_list, "jpg") {
+
+	if slices.Contains(formatList, "jpeg") ||
+		slices.Contains(formatList, "jpg") {
 		extensions = append(extensions, ".jpg", ".jpeg")
 	}
+
 	return
 }
 
-func SetJPEGConvertExtensions(format_list []string) (extensions []string) {
-	files.LowerSlice(format_list)
-	if format_list == nil {
-		return supported_formats_jpeg
+func SetJPEGConvertExtensions(formatList []string) (extensions []string) {
+	files.LowerSlice(formatList)
+
+	if formatList == nil {
+		return supportedFormatsJPEG
 	}
-	if slices.Contains(format_list, "png") {
+
+	if slices.Contains(formatList, "png") {
 		extensions = append(extensions, ".png")
 	}
+
 	return
 }
 
 func ConvertToPNG(path string) {
 	image, err := vips.NewImageFromFile(path)
 	if err != nil {
-		log.Printf("An error occured during opening file at %s: %s \n", path, err)
+		log.Printf(
+			"An error occured during opening file at %s: %s \n",
+			path,
+			err,
+		)
+
 		return
 	}
+
 	files.RemoveBloat(image)
 	newImage, _ := image.ToImage(presets.SafePNG())
 	path = files.UpdateExtension(path, ".png")
+
 	err = imgio.Save(path, newImage, imgio.PNGEncoder())
 	if err != nil {
-		log.Printf("An error occured during saving file at %s: %s \n", path, err)
+		log.Printf(
+			"An error occured during saving file at %s: %s \n",
+			path,
+			err,
+		)
+
 		return
 	}
 }
@@ -57,15 +76,27 @@ func ConvertToPNG(path string) {
 func ConvertToJPEG(path string) {
 	image, err := vips.NewImageFromFile(path)
 	if err != nil {
-		log.Printf("An error occured during opening file at %s: %s \n", path, err)
+		log.Printf(
+			"An error occured during opening file at %s: %s \n",
+			path,
+			err,
+		)
+
 		return
 	}
+
 	files.RemoveBloat(image)
 	bytes, _, _ := image.ExportJpeg(presets.JPEG(files.Quality))
 	path = files.UpdateExtension(path, ".jpg")
+
 	err = os.WriteFile(path, bytes, 0644)
 	if err != nil {
-		log.Printf("An error occured during saving file at %s: %s \n", path, err)
+		log.Printf(
+			"An error occured during saving file at %s: %s \n",
+			path,
+			err,
+		)
+
 		return
 	}
 }

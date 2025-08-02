@@ -7,15 +7,15 @@ import (
 	"github.com/spf13/cobra"
 )
 
-// topngCmd represents the topng command
-var TopngCmd = &cobra.Command{
+// ToPNGCmd represents the topng command
+var ToPNGCmd = &cobra.Command{
 	Use:   "to-png",
 	Short: "Converts supported formats to PNG",
 	Long:  `Converts supported formats to PNG`,
 	Run: func(cmd *cobra.Command, args []string) {
 		vips.Startup(nil)
 		defer vips.Shutdown()
-		for _, file := range files.GenerateFiles(files.Input, files.Recursive, convert.SetPNGConvertExtensions(files.Format_list)) {
+		for _, file := range files.GenerateFiles(files.Input, files.Recursive, convert.SetPNGConvertExtensions(files.FormatList)) {
 			convert.ConvertToPNG(file)
 		}
 	},
