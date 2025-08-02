@@ -23,4 +23,5 @@ go install
 
 Resize and convert as much images as you have with one command. That's basically it.
 Sumpto is currently in development, so only PNG and JPEG for now. 
-Other image and video format support as well as new features will be there.
+Other image and video format support as well as new features will be there someday.
+Need to stop using libvis and write my own encoders and decoders. It's gonna take a lot of time.
