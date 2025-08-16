@@ -2,8 +2,8 @@ package convert
 
 import (
 	"github.com/davidbyttow/govips/v2/vips"
-	"github.com/hawkuash/sumpto/convert"
-	"github.com/hawkuash/sumpto/files"
+	"github.com/hawkuash/sumpto/internal/convert"
+	"github.com/hawkuash/sumpto/internal/files"
 	"github.com/spf13/cobra"
 )
 

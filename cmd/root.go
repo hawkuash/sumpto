@@ -7,7 +7,7 @@ import (
 	"github.com/hawkuash/sumpto/cmd/compress"
 	"github.com/hawkuash/sumpto/cmd/convert"
 	"github.com/hawkuash/sumpto/cmd/scale"
-	"github.com/hawkuash/sumpto/files"
+	"github.com/hawkuash/sumpto/internal/files"
 	"github.com/spf13/cobra"
 )
 

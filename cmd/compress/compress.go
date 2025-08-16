@@ -2,8 +2,8 @@ package compress
 
 import (
 	"github.com/davidbyttow/govips/v2/vips"
-	"github.com/hawkuash/sumpto/compress"
-	"github.com/hawkuash/sumpto/files"
+	"github.com/hawkuash/sumpto/internal/compress"
+	"github.com/hawkuash/sumpto/internal/files"
 	"github.com/spf13/cobra"
 )
 

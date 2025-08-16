@@ -2,8 +2,8 @@ package scale
 
 import (
 	"github.com/davidbyttow/govips/v2/vips"
-	"github.com/hawkuash/sumpto/files"
-	"github.com/hawkuash/sumpto/scale"
+	"github.com/hawkuash/sumpto/internal/files"
+	"github.com/hawkuash/sumpto/internal/scale"
 	"github.com/spf13/cobra"
 )
 

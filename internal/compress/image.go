@@ -6,8 +6,8 @@ import (
 	"slices"
 
 	"github.com/davidbyttow/govips/v2/vips"
-	"github.com/hawkuash/sumpto/files"
-	"github.com/hawkuash/sumpto/presets"
+	"github.com/hawkuash/sumpto/internal/files"
+	"github.com/hawkuash/sumpto/internal/presets"
 )
 
 var (
@@ -37,7 +37,6 @@ func CompressImage(path string, overwrite bool) {
 			path,
 			err,
 		)
-
 		return
 	}
 
