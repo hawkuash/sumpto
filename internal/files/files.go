@@ -11,6 +11,29 @@ import (
 	"github.com/davidbyttow/govips/v2/vips"
 )
 
+type ImageFileType int
+
+const (
+	Unsupported ImageFileType = iota
+	JPEG
+	PNG
+)
+
+var ImageFileTypeExtensions = map[ImageFileType][]string{
+	JPEG: {".jpg", ".jpeg", ".jpe", ".jif", ".jfif", ".jfi"},
+	PNG:  {".png"},
+}
+
+var ImageFileTypes = map[ImageFileType]string{
+	JPEG: "jpeg",
+	PNG:  "png",
+}
+
+type ImageFile struct {
+	filepath string
+	filetype ImageFileType
+}
+
 var (
 	Input      string
 	Recursive  bool
