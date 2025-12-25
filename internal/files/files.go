@@ -11,27 +11,22 @@ import (
 	"github.com/davidbyttow/govips/v2/vips"
 )
 
-type ImageFileType int
+type Image int
 
 const (
-	Unsupported ImageFileType = iota
+	Unsupported Image = iota
 	JPEG
 	PNG
 )
 
-var ImageFileTypeExtensions = map[ImageFileType][]string{
+var ImageExtensions = map[Image][]string{
 	JPEG: {".jpg", ".jpeg", ".jpe", ".jif", ".jfif", ".jfi"},
 	PNG:  {".png"},
 }
 
-var ImageFileTypes = map[ImageFileType]string{
-	JPEG: "jpeg",
-	PNG:  "png",
-}
-
 type ImageFile struct {
 	filepath string
-	filetype ImageFileType
+	filetype Image
 }
 
 var (
@@ -139,7 +134,7 @@ func ParseInput(s string) ([]string, []string) {
 			paths = append(paths, val)
 		}
 
-		if !fi.IsDir() && !slices.Contains(files, val) {
+		if !(fi.IsDir() || slices.Contains(files, val)) {
 			files = append(files, val)
 		}
 	}
